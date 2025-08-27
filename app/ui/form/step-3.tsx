@@ -15,7 +15,7 @@ export function Step3Review() {
         if (state.status === 1) return;
         const nextStatus = state.ok ? 'Success' : 'Error';
         if (status !== nextStatus) setStatus(nextStatus);
-        if (state.status !== 1) {
+        if (state.status !== 1 && state.ok) {
             next();
         }
     }, [state, status, setStatus, next]);
