@@ -21,7 +21,6 @@ export function Step1Business() {
             address: data.address
         });
 
-
         if (!result.success) {
             const map = toErrorMap(result.error.issues);
 

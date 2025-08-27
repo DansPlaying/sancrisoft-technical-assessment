@@ -1,3 +1,4 @@
+
 export type CompanyType = "Sole Proprietorship" |
     "General Partnership (GP)" |
     "Limited Partnership (LP)" |

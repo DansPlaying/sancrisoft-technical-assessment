@@ -3,16 +3,7 @@
 import { submitCompany, SubmitState } from "@/app/lib/actions";
 import { useForm } from "@/app/state/formContext";
 import { useActionState, useEffect } from "react";
-import { useFormStatus } from 'react-dom';
-
-function SubmitBtn() {
-    const { pending } = useFormStatus();
-    return (
-        <button className="btn btn--primary btn--light" type="submit" disabled={pending} style={{ width: '100%' }}>
-            {pending ? 'Submitting…' : 'Confirm & Submit →'}
-        </button>
-    );
-}
+import { SubmitBtnStep3 } from "../submit-btn-step3";
 
 export function Step3Review() {
 
@@ -24,7 +15,7 @@ export function Step3Review() {
         if (state.status === 1) return;
         const nextStatus = state.ok ? 'Success' : 'Error';
         if (status !== nextStatus) setStatus(nextStatus);
-        if (state.status !== 1){
+        if (state.status !== 1) {
             next();
         }
     }, [state, status, setStatus, next]);
@@ -90,7 +81,7 @@ export function Step3Review() {
                     )}
 
                     {!state.ok && <div className="actions">
-                        <SubmitBtn />
+                        <SubmitBtnStep3 />
                     </div>}
 
                     {state.status !== 1 && !state.ok && (
@@ -106,7 +97,7 @@ export function Step3Review() {
 
                 </div>
             </form>
-            <div onClick={ reset }>
+            <div onClick={reset}>
                 {state.ok &&
                     <button className="btn btn--primary btn--light" type="button" style={{ width: '100%' }}> Start Over →   </button>
                 }

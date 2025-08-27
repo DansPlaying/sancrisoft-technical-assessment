@@ -1,13 +1,8 @@
 'use client';
 
+import { Steps } from "../lib/constants";
 import { Step } from "../lib/definitions";
 import { useForm } from "../state/formContext";
-
-const Steps = [
-    { id: 1, label: 'Business structure' },
-    { id: 2, label: 'Contact person' },
-    { id: 3, label: 'Review & submit' },
-] as const;
 
 export function SideNav() {
 

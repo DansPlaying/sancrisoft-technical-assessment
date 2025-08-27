@@ -1,5 +1,11 @@
 import { Country, State } from "./definitions";
 
+export const Steps = [
+    { id: 1, label: 'Business structure' },
+    { id: 2, label: 'Contact person' },
+    { id: 3, label: 'Review & submit' },
+] as const;
+
 export const companyTypesString =  [
     "Sole Proprietorship",
     "General Partnership (GP)",
