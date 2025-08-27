@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Multi-Step Form (Next.js / App Router)
 
-## Getting Started
+A 3-step company onboarding form built with Next.js, Server Actions, Zod validation, and a simple Context store. Styles live in app/globals.css.
 
-First, run the development server:
+# 1) Install deps
+npm install
 
-```bash
+# 2) Run dev server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000
+ — the form is shown on the home page. You can go through the steps and submit.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+What to try
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Step 1: Business data (validated with Zod).
 
-## Learn More
+Step 2: Contact person (validated with Zod; phone field is controlled and writes to context).
 
-To learn more about Next.js, take a look at the following resources:
+Step 3: Review & submit (Server Action → Beeceptor demo endpoint).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Success: returns a green banner.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Business error simulation: use “Sancrisoft” as the company name to trigger an error message (status 200 with {status:"error"}).
 
-## Deploy on Vercel
+Occasional 500s are handled and shown as a red banner.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Status pill updates to in progress / success / error.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Local persistence: progress and field values are saved to localStorage. Use Start Over to clear.
+
+Scripts
+
+dev — start the Next dev server
+
+build — production build
+
+start — run the production build
+
+lint — lint the project
+
+Configuration
+
+No environment variables are required.
