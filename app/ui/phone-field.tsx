@@ -4,12 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { useForm } from "../state/formContext";
 import { formatUS } from "../lib/helpers";
-
-type Country = {
-    name: string;
-    phone_code: string;
-    flag_url: string;
-};
+import { Country } from "../lib/definitions";
 
 export default function PhoneField({
     countries,
@@ -54,7 +49,7 @@ export default function PhoneField({
                     className="code"
                     value={i}
                     onChange={(e) => {
-                        setI(Number(e.target.value)); setData((d) => ({ ...d, contact: { ...d.contact, phoneCode: countries[Number(e.target.value)].toString() } }));
+                        setI(Number(e.target.value)); setData((d) => ({ ...d, contact: { ...d.contact, phoneCode: countries[Number(e.target.value)].phone_code } }));
                     }
                     }
                     aria-label="Country code"

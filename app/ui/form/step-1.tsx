@@ -8,7 +8,7 @@ import { useState } from "react";
 
 export function Step1Business() {
 
-    const { data, setData, next, setStatus } = useForm();
+    const { data, setData, next, setStatus, status } = useForm();
     const [errors, setErrors] = useState<Record<string, string>>({});
     const a = data.address;
 
@@ -44,11 +44,13 @@ export function Step1Business() {
         }));
 
         setErrors({});
-        setStatus('In Progress')
         next();
     };
 
     const clear = (key: string) => {
+        if(status !== 'In Progress'){
+            setStatus('In Progress');
+        }
         if (errors[key]) setErrors((e) => { const { [key]: _, ...rest } = e; return rest; });
     };
 

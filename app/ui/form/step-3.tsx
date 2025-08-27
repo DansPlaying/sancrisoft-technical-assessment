@@ -16,7 +16,7 @@ function SubmitBtn() {
 
 export function Step3Review() {
 
-    const { data, status, setStatus, next, reset } = useForm();
+    const { data, status, setStatus, setStep, next, reset } = useForm();
     const initial: SubmitState = { ok: false, status: 1, message: '' };
     const [state, formAction] = useActionState(submitCompany, initial);
 
@@ -24,17 +24,19 @@ export function Step3Review() {
         if (state.status === 1) return;
         const nextStatus = state.ok ? 'Success' : 'Error';
         if (status !== nextStatus) setStatus(nextStatus);
-        next();
+        if (state.status !== 1){
+            next();
+        }
     }, [state, status, setStatus, next]);
 
     return (
         <>
 
-            <form action={formAction}>
+            <form action={formAction} noValidate>
 
                 <div className="review light">
                     <h2 className="review__title">Business structure
-                        <button style={{ marginLeft: '20px' }} className="link-edit" type="button">Edit</button>
+                        <button onClick={() => setStep(1)} style={{ marginLeft: '20px' }} className="link-edit" type="button">Edit</button>
                     </h2>
 
                     <dl className="definitions">
@@ -56,7 +58,7 @@ export function Step3Review() {
 
 
                     <h2 className="review__title">Contact person
-                        <button style={{ marginLeft: '40px' }} className="link-edit" type="button">Edit</button>
+                        <button onClick={() => setStep(2)} style={{ marginLeft: '40px' }} className="link-edit" type="button">Edit</button>
                     </h2>
 
                     <dl className="definitions">
@@ -76,9 +78,9 @@ export function Step3Review() {
 
                     <input type="hidden" name="payload" value={JSON.stringify(data)} />
 
-                    {state.status !== 1 && (
+                    {state.status !== 1 && state.ok && (
                         <div
-                            className={`banner ${state.ok ? 'banner--success' : 'banner--danger'}`}
+                            className={`banner banner--success`}
                             role="status"
                             aria-live="polite"
                             style={{ marginTop: 12 }}
@@ -90,6 +92,18 @@ export function Step3Review() {
                     {!state.ok && <div className="actions">
                         <SubmitBtn />
                     </div>}
+
+                    {state.status !== 1 && !state.ok && (
+                        <div
+                            className={`banner banner--danger`}
+                            role="status"
+                            aria-live="polite"
+                            style={{ marginTop: 12 }}
+                        >
+                            {state.message}
+                        </div>
+                    )}
+
                 </div>
             </form>
             <div onClick={ reset }>

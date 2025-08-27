@@ -60,12 +60,3 @@ export interface FormAllData {
     address: Address;
     contact: Contact;
 }
-
-export interface ApiOk {
-    status: 'ok';
-}
-export interface ApiError {
-    status: 'error';
-    message?: string;
-}
-export type ApiResponse = ApiOk | ApiError;

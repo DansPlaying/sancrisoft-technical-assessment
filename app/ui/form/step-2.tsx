@@ -29,7 +29,6 @@ export function Step2Contact() {
             }
         });
 
-
         if (!result.success) {
             const map = toErrorMap(result.error.issues);
             setErrors(map);

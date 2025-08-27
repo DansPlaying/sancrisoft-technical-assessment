@@ -4,8 +4,7 @@ import { FormAllData } from "./definitions";
 
 export type SubmitState = { ok: boolean; status: number; message: string };
 
-export async function submitCompany( prevState: SubmitState,            // ← 1º el estado previo
-  formData: FormData) {
+export async function submitCompany( prevState: SubmitState, formData: FormData) {
   try {
     const data = JSON.parse(String(formData.get('payload') ?? '{}'));
     const payload = toApiPayload(data as FormAllData);
@@ -19,8 +18,6 @@ export async function submitCompany( prevState: SubmitState,            // ← 1
 
     const text = await res.text();                
     const body = tryJson(text); 
-
-    console.log('Payload:', payload);
     
     const message  = String(body?.message ?? (text || (res.ok ? 'OK' : 'Server error')));
     const apiState = String(body?.status  ?? (res.ok ? 'ok' : 'error')).toLowerCase();
